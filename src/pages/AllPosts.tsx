@@ -1,9 +1,9 @@
 import { SearchIcon } from '@heroicons/react/solid';
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Post } from '../utils/interfaces/post.interface';
 import axios from './../utils/axios';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { UserContext } from '../App';
+import { SinglePost } from '../components/SinglePost';
 
 export const AllPosts = () => {
   const [allPosts, setAllPosts] = useState<Post[]>([]);
@@ -28,14 +28,6 @@ export const AllPosts = () => {
     setPrevIndex(prevIndex + 10);
   };
 
-  const users = useContext(UserContext);
-
-  const findUsernameById = (id: number) => {
-    const user = users.find((user) => user.id == id);
-
-    if (user) return user.name;
-  };
-
   return (
     <>
       <nav className='bg-teal-500 w-full flex justify-center items-center h-16'>
@@ -49,18 +41,16 @@ export const AllPosts = () => {
           />
         </div>
       </nav>
+
       <InfiniteScroll
         dataLength={shownPosts.length}
         next={loadMore}
         hasMore={shownPosts.length !== 100}
         loader={<>loading</>}
+        className='flex flex-col justify-center items-center'
       >
         {shownPosts.map((post, index) => (
-          <div key={index} className='bg-red-200 m-10'>
-            <p>{findUsernameById(post.userId)}</p>
-            {post.id}. {post.title}
-            {post.body}
-          </div>
+          <SinglePost key={index} post={post} />
         ))}
       </InfiniteScroll>
     </>
