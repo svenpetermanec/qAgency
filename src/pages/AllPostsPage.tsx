@@ -1,11 +1,11 @@
 import { SearchIcon } from '@heroicons/react/solid';
 import { useEffect, useState } from 'react';
 import { Post } from '../utils/interfaces/post.interface';
-import axios from './../utils/axios';
+import axios from '../utils/axios';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { SinglePost } from '../components/SinglePost';
 
-export const AllPosts = () => {
+export const AllPostsPage = () => {
   const [allPosts, setAllPosts] = useState<Post[]>([]);
   const [shownPosts, setShownPosts] = useState<Post[]>([]);
   const [prevIndex, setPrevIndex] = useState<number>(10);

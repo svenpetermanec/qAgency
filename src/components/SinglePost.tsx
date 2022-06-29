@@ -10,6 +10,7 @@ import { Comment } from '../utils/interfaces/comment.interface';
 import axios from '../utils/axios';
 import { SingleComment } from './SingleComment';
 import useCollapse from 'react-collapsed';
+import { useNavigate } from 'react-router-dom';
 
 interface SinglePostProps {
   post: Post;
@@ -27,6 +28,8 @@ export const SinglePost = memo(({ post }: SinglePostProps) => {
     fetchComments();
   }, []);
 
+  const navigate = useNavigate();
+
   const { getCollapseProps, getToggleProps, isExpanded } = useCollapse();
 
   const users = useContext(UserContext);
@@ -39,14 +42,16 @@ export const SinglePost = memo(({ post }: SinglePostProps) => {
 
   return (
     <div className='bg-gray-100 m-10 p-5 rounded-md max-w-4xl '>
-      <UserCircleIcon className='w-8 h-8 fill-gray-500 inline' />
+      <div onClick={() => navigate(`/post/${post.id}`)}>
+        <UserCircleIcon className='w-8 h-8 fill-gray-500 inline' />
 
-      <p className='font-semibold inline'>{findUsernameById(post.userId)}</p>
+        <p className='font-semibold inline'>{findUsernameById(post.userId)}</p>
 
-      <div className='m-2'>
-        <p className='font-bold'>{post.title}</p>
+        <div className='m-2'>
+          <p className='font-bold'>{post.title}</p>
 
-        {post.body}
+          {post.body}
+        </div>
       </div>
 
       <div className='m-2'>

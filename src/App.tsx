@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { AllPosts } from './pages/AllPosts';
+import { AllPostsPage } from './pages/AllPostsPage';
 import axios from './utils/axios';
 import { User } from './utils/interfaces/user.interface';
 
@@ -21,7 +21,7 @@ export const App = () => {
   return (
     <UserContext.Provider value={users}>
       <Routes>
-        <Route path='/posts' element={<AllPosts />} />
+        <Route path='/posts' element={<AllPostsPage />} />
         <Route path='/post/:id' element={<>Single</>} />
         <Route path='*' element={<Navigate to='/posts' />} />
       </Routes>
