@@ -17,7 +17,7 @@ export const AllPostsPage = () => {
 
       const firstTen = data.slice(0, 10);
       setShownPosts(firstTen);
-      setAllPosts(data);
+      setAllPosts(() => data);
     };
 
     fetchPosts();

@@ -42,7 +42,10 @@ export const SinglePost = memo(({ post }: SinglePostProps) => {
 
   return (
     <div className='bg-gray-100 m-10 p-5 rounded-md max-w-4xl '>
-      <div onClick={() => navigate(`/post/${post.id}`)}>
+      <div
+        className='cursor-pointer'
+        onClick={() => navigate(`/post/${post.id}`)}
+      >
         <UserCircleIcon className='w-8 h-8 fill-gray-500 inline' />
 
         <p className='font-semibold inline'>{findUsernameById(post.userId)}</p>

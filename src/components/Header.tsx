@@ -1,4 +1,6 @@
 import { SearchIcon } from '@heroicons/react/solid';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Post } from '../utils/interfaces/post.interface';
 
 interface HeaderProps {
@@ -7,6 +9,22 @@ interface HeaderProps {
 }
 
 export const Header = ({ posts, hasSearch }: HeaderProps) => {
+  const [filteredPosts, setFilteredPosts] = useState<Post[] | undefined>([]);
+
+  const navigate = useNavigate();
+
+  const search = (e: any) => {
+    console.log(e.target.value);
+    if (e.target.value === '') return setFilteredPosts([]);
+
+    const regex = new RegExp(`${e.target.value}`, 'gi');
+
+    const postsFilteredArray = posts?.filter((post) => {
+      return regex.test(post.title) || regex.test(post.body);
+    });
+    setFilteredPosts(postsFilteredArray);
+  };
+
   return (
     <nav className='bg-teal-500 w-full flex justify-center items-center h-16'>
       {hasSearch && (
@@ -17,7 +35,20 @@ export const Header = ({ posts, hasSearch }: HeaderProps) => {
             className='center h-12 border-none rounded-md w-80'
             type='text'
             placeholder='Search'
+            onChange={search}
+            onBlur={() => setFilteredPosts([])}
           />
+
+          <div className='absolute mt-3 rounded-md bg-teal-500 text-white max-h-52 min-w-full overflow-auto'>
+            {filteredPosts?.map((post) => (
+              <p
+                onClick={() => navigate(`/post/${post.id}`)}
+                className='hover:bg-teal-600 rounded-md p-2 cursor-pointer'
+              >
+                {post.title}
+              </p>
+            ))}
+          </div>
         </div>
       )}
     </nav>
