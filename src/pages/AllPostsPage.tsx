@@ -1,4 +1,3 @@
-import { SearchIcon } from '@heroicons/react/solid';
 import { useEffect, useState } from 'react';
 import { Post } from '../utils/interfaces/post.interface';
 import axios from '../utils/axios';

@@ -41,7 +41,7 @@ export const SinglePost = memo(({ post }: SinglePostProps) => {
   };
 
   return (
-    <div className='bg-gray-100 m-10 p-5 rounded-md max-w-4xl '>
+    <div className='bg-gray-100 m-10 p-5 rounded-md min-w-[50%] max-w-[50%]'>
       <div
         className='cursor-pointer'
         onClick={() => navigate(`/post/${post.id}`)}
