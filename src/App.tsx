@@ -19,11 +19,19 @@ export const App = () => {
     fetchUsers();
   }, []);
 
+  const helloFromMessage = 'Hello from ';
+
   return (
     <UserContext.Provider value={users}>
       <Routes>
-        <Route path='/posts' element={<AllPostsPage />} />
-        <Route path='/post/:id' element={<SinglePostPage />} />
+        <Route
+          path='/posts'
+          element={<AllPostsPage helloFromMessage={helloFromMessage} />}
+        />
+        <Route
+          path='/post/:id'
+          element={<SinglePostPage helloFromMessage={helloFromMessage} />}
+        />
         <Route path='*' element={<Navigate to='/posts' />} />
       </Routes>
     </UserContext.Provider>

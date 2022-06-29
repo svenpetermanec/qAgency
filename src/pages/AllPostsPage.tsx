@@ -4,8 +4,9 @@ import axios from '../utils/axios';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { SinglePost } from '../components/SinglePost';
 import { Header } from '../components/Header';
+import { HelloFromProp } from '../utils/interfaces/helloFromProp.interface';
 
-export const AllPostsPage = () => {
+export const AllPostsPage = ({ helloFromMessage }: HelloFromProp) => {
   const [allPosts, setAllPosts] = useState<Post[]>([]);
   const [shownPosts, setShownPosts] = useState<Post[]>([]);
   const [prevIndex, setPrevIndex] = useState<number>(10);
@@ -28,9 +29,11 @@ export const AllPostsPage = () => {
     setPrevIndex(prevIndex + 10);
   };
 
+  console.log(helloFromMessage, AllPostsPage.name);
+
   return (
     <>
-      <Header posts={allPosts} hasSearch />
+      <Header posts={allPosts} hasSearch helloFromMessage={helloFromMessage} />
 
       <InfiniteScroll
         dataLength={shownPosts.length}
@@ -40,7 +43,11 @@ export const AllPostsPage = () => {
         className='flex flex-col justify-center items-center'
       >
         {shownPosts.map((post, index) => (
-          <SinglePost key={index} post={post} />
+          <SinglePost
+            key={index}
+            post={post}
+            helloFromMessage={helloFromMessage}
+          />
         ))}
       </InfiniteScroll>
     </>

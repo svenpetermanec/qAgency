@@ -1,14 +1,15 @@
 import { SearchIcon } from '@heroicons/react/solid';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { HelloFromProp } from '../utils/interfaces/helloFromProp.interface';
 import { Post } from '../utils/interfaces/post.interface';
 
-interface HeaderProps {
+interface HeaderProps extends HelloFromProp {
   posts?: Post[];
   hasSearch: boolean;
 }
 
-export const Header = ({ posts, hasSearch }: HeaderProps) => {
+export const Header = ({ posts, hasSearch, helloFromMessage }: HeaderProps) => {
   const [filteredPosts, setFilteredPosts] = useState<Post[] | undefined>([]);
 
   const navigate = useNavigate();
@@ -24,6 +25,8 @@ export const Header = ({ posts, hasSearch }: HeaderProps) => {
     });
     setFilteredPosts(postsFilteredArray);
   };
+
+  console.log(helloFromMessage, Header.name);
 
   return (
     <nav className='bg-teal-500 w-full flex justify-center items-center h-16'>
