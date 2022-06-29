@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { Header } from '../components/Header';
 import { SinglePost } from '../components/SinglePost';
 import axios from '../utils/axios';
 import { Post } from '../utils/interfaces/post.interface';
@@ -19,8 +20,12 @@ export const SinglePostPage = () => {
   }, []);
 
   return (
-    <div className='flex flex-col justify-center items-center'>
-      {post && <SinglePost post={post} />}
-    </div>
+    <>
+      <Header hasSearch={false} />
+
+      <div className='flex flex-col justify-center items-center'>
+        {post && <SinglePost post={post} />}
+      </div>
+    </>
   );
 };

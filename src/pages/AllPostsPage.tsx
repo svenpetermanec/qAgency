@@ -4,6 +4,7 @@ import { Post } from '../utils/interfaces/post.interface';
 import axios from '../utils/axios';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { SinglePost } from '../components/SinglePost';
+import { Header } from '../components/Header';
 
 export const AllPostsPage = () => {
   const [allPosts, setAllPosts] = useState<Post[]>([]);
@@ -30,17 +31,7 @@ export const AllPostsPage = () => {
 
   return (
     <>
-      <nav className='bg-teal-500 w-full flex justify-center items-center h-16'>
-        <div className='relative'>
-          <SearchIcon className='pointer-events-none w-6 h-6 absolute top-1/2 transform -translate-y-1/2 right-5 fill-gray-500' />
-
-          <input
-            className='center h-12 border-none rounded-md w-80'
-            type='text'
-            placeholder='Search'
-          />
-        </div>
-      </nav>
+      <Header posts={allPosts} hasSearch />
 
       <InfiniteScroll
         dataLength={shownPosts.length}
