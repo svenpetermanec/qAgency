@@ -1,15 +1,21 @@
 import { memo, useContext, useEffect, useState } from 'react';
 import { UserContext } from '../App';
 import { Post } from '../utils/interfaces/post.interface';
-import { UserCircleIcon } from '@heroicons/react/solid';
+import {
+  UserCircleIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
+} from '@heroicons/react/solid';
 import { Comment } from '../utils/interfaces/comment.interface';
 import axios from '../utils/axios';
+import { SingleComment } from './SingleComment';
+import useCollapse from 'react-collapsed';
 
-interface PostProps {
+interface SinglePostProps {
   post: Post;
 }
 
-export const SinglePost = memo(({ post }: PostProps) => {
+export const SinglePost = memo(({ post }: SinglePostProps) => {
   const [comments, setComments] = useState<Comment[]>([]);
 
   useEffect(() => {
@@ -21,10 +27,12 @@ export const SinglePost = memo(({ post }: PostProps) => {
     fetchComments();
   }, []);
 
+  const { getCollapseProps, getToggleProps, isExpanded } = useCollapse();
+
   const users = useContext(UserContext);
 
   const findUsernameById = (id: number) => {
-    const user = users.find((user) => user.id == id);
+    const user = users.find((user) => user.id === id);
 
     if (user) return user.name;
   };
@@ -43,13 +51,24 @@ export const SinglePost = memo(({ post }: PostProps) => {
 
       <div className='m-2'>
         <hr />
-        <p className='py-1 font-medium'>Comments</p>
+        <div className='flex items-center'>
+          <p className='py-1 font-medium inline align-middle'>Comments</p>
+          <p className='inline ' {...getToggleProps()}>
+            {isExpanded ? (
+              <ChevronUpIcon className='w-6 h-6 fill-teal-500 ' />
+            ) : (
+              <ChevronDownIcon className='w-6 h-6 fill-teal-500' />
+            )}
+          </p>
+        </div>
         <hr />
       </div>
 
-      {comments.map((comment) => (
-        <>{comment.body}</>
-      ))}
+      <div {...getCollapseProps()}>
+        {comments.map((comment, index) => (
+          <SingleComment key={index} comment={comment} />
+        ))}
+      </div>
     </div>
   );
 });
