@@ -7,11 +7,11 @@ import {
   ChevronUpIcon,
 } from '@heroicons/react/solid';
 import { Comment } from '../../utils/interfaces/comment.interface';
-import axios from '../../utils/axios';
 import { SingleComment } from '../Comment/SingleComment';
 import useCollapse from 'react-collapsed';
 import { useNavigate } from 'react-router-dom';
 import { HelloFromProp } from '../../utils/interfaces/helloFromProp.interface';
+import { getCommentsById } from '../../api/CommentAPI';
 
 interface SinglePostProps extends HelloFromProp {
   post: Post;
@@ -23,7 +23,7 @@ export const SinglePost = memo(
 
     useEffect(() => {
       const fetchComments = async () => {
-        const { data } = await axios.get(`/posts/${post.id}/comments`);
+        const data = await getCommentsById(post.id);
         setComments(data);
       };
 

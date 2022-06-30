@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { getPostById } from '../api/PostsAPI';
 import { Header } from '../components/Header/Header';
 import { SinglePost } from '../components/Post/SinglePost';
-import axios from '../utils/axios';
 import { HelloFromProp } from '../utils/interfaces/helloFromProp.interface';
 import { Post } from '../utils/interfaces/post.interface';
 
@@ -13,8 +13,8 @@ export const SinglePostPage = ({ helloFromMessage }: HelloFromProp) => {
 
   useEffect(() => {
     const fetchPost = async () => {
-      const { data } = await axios.get(`/posts/${id}`);
-      setPost(data);
+      const post = await getPostById(id);
+      setPost(post);
     };
 
     fetchPost();

@@ -1,8 +1,8 @@
 import { createContext, useEffect, useState } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
+import { getAllUsers } from './api/UsersApi';
 import { AllPostsPage } from './pages/AllPostsPage';
 import { SinglePostPage } from './pages/SinglePostPage';
-import axios from './utils/axios';
 import { User } from './utils/interfaces/user.interface';
 
 export const UserContext = createContext<User[]>([]);
@@ -12,7 +12,7 @@ export const App = () => {
 
   useEffect(() => {
     const fetchUsers = async () => {
-      const { data } = await axios.get('/users');
+      const data = await getAllUsers();
       setUsers(data);
     };
 

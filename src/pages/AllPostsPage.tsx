@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Post } from '../utils/interfaces/post.interface';
-import axios from '../utils/axios';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { SinglePost } from '../components/Post/SinglePost';
 import { Header } from '../components/Header/Header';
 import { HelloFromProp } from '../utils/interfaces/helloFromProp.interface';
+import { getAllPosts } from '../api/PostsAPI';
 
 export const AllPostsPage = ({ helloFromMessage }: HelloFromProp) => {
   const [allPosts, setAllPosts] = useState<Post[]>([]);
@@ -13,11 +13,11 @@ export const AllPostsPage = ({ helloFromMessage }: HelloFromProp) => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const { data } = await axios.get('/posts');
+      const posts = await getAllPosts();
 
-      const firstTen = data.slice(0, 10);
+      const firstTen = posts.slice(0, 10);
       setShownPosts(firstTen);
-      setAllPosts(() => data);
+      setAllPosts(() => posts);
     };
 
     fetchPosts();
