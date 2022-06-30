@@ -13,7 +13,7 @@ export const SinglePostPage = ({ helloFromMessage }: HelloFromProp) => {
 
   useEffect(() => {
     const fetchPost = async () => {
-      const post = await getPostById(id);
+      const post = await getPostById(id!);
       setPost(post);
     };
 
