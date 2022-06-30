@@ -79,9 +79,9 @@ export const SinglePost = memo(
         </div>
 
         <div {...getCollapseProps()}>
-          {comments.map((comment, index) => (
+          {comments.map((comment) => (
             <SingleComment
-              key={index}
+              key={comment.id}
               comment={comment}
               helloFromMessage={helloFromMessage}
             />

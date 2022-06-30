@@ -39,12 +39,12 @@ export const Header = ({ posts, hasSearch, helloFromMessage }: HeaderProps) => {
             type='text'
             placeholder='Search'
             onChange={search}
-            onBlur={() => setFilteredPosts([])}
           />
 
           <div className='absolute mt-3 rounded-md bg-teal-500 text-white max-h-52 min-w-full overflow-auto'>
             {filteredPosts?.map((post) => (
               <p
+                key={post.id}
                 onClick={() => navigate(`/post/${post.id}`)}
                 className='hover:bg-teal-600 rounded-md p-2 cursor-pointer'
               >

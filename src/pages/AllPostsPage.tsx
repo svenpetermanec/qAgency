@@ -42,9 +42,9 @@ export const AllPostsPage = ({ helloFromMessage }: HelloFromProp) => {
         loader={<>loading</>}
         className='flex flex-col justify-center items-center'
       >
-        {shownPosts.map((post, index) => (
+        {shownPosts.map((post) => (
           <SinglePost
-            key={index}
+            key={post.id}
             post={post}
             helloFromMessage={helloFromMessage}
           />
