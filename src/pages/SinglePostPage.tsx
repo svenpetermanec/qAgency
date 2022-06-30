@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Header } from '../components/Header';
-import { SinglePost } from '../components/SinglePost';
+import { Header } from '../components/Header/Header';
+import { SinglePost } from '../components/Post/SinglePost';
 import axios from '../utils/axios';
 import { HelloFromProp } from '../utils/interfaces/helloFromProp.interface';
 import { Post } from '../utils/interfaces/post.interface';
