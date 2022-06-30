@@ -1,7 +1,7 @@
-import { Comment } from '../utils/interfaces/comment.interface';
+import { Comment } from '../../utils/interfaces/comment.interface';
 import { UserCircleIcon } from '@heroicons/react/solid';
 import { memo } from 'react';
-import { HelloFromProp } from '../utils/interfaces/helloFromProp.interface';
+import { HelloFromProp } from '../../utils/interfaces/helloFromProp.interface';
 
 interface SingleCommentProps extends HelloFromProp {
   comment: Comment;

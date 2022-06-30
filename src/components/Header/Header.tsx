@@ -1,8 +1,8 @@
 import { SearchIcon } from '@heroicons/react/solid';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { HelloFromProp } from '../utils/interfaces/helloFromProp.interface';
-import { Post } from '../utils/interfaces/post.interface';
+import { HelloFromProp } from '../../utils/interfaces/helloFromProp.interface';
+import { Post } from '../../utils/interfaces/post.interface';
 
 interface HeaderProps extends HelloFromProp {
   posts?: Post[];

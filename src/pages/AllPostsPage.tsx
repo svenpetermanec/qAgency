@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { Post } from '../utils/interfaces/post.interface';
 import axios from '../utils/axios';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { SinglePost } from '../components/SinglePost';
-import { Header } from '../components/Header';
+import { SinglePost } from '../components/Post/SinglePost';
+import { Header } from '../components/Header/Header';
 import { HelloFromProp } from '../utils/interfaces/helloFromProp.interface';
 
 export const AllPostsPage = ({ helloFromMessage }: HelloFromProp) => {

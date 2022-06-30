@@ -1,17 +1,17 @@
 import { memo, useContext, useEffect, useState } from 'react';
-import { UserContext } from '../App';
-import { Post } from '../utils/interfaces/post.interface';
+import { UserContext } from '../../App';
+import { Post } from '../../utils/interfaces/post.interface';
 import {
   UserCircleIcon,
   ChevronDownIcon,
   ChevronUpIcon,
 } from '@heroicons/react/solid';
-import { Comment } from '../utils/interfaces/comment.interface';
-import axios from '../utils/axios';
-import { SingleComment } from './SingleComment';
+import { Comment } from '../../utils/interfaces/comment.interface';
+import axios from '../../utils/axios';
+import { SingleComment } from '../Comment/SingleComment';
 import useCollapse from 'react-collapsed';
 import { useNavigate } from 'react-router-dom';
-import { HelloFromProp } from '../utils/interfaces/helloFromProp.interface';
+import { HelloFromProp } from '../../utils/interfaces/helloFromProp.interface';
 
 interface SinglePostProps extends HelloFromProp {
   post: Post;
